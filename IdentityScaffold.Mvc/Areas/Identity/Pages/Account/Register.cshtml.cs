@@ -1,4 +1,4 @@
-﻿using IdentityScaffold.Mvc.Areas.Identity.Data;
+﻿using IdentityScaffold.Mvc.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -54,7 +54,7 @@ namespace IdentityScaffold.Mvc.Areas.Identity.Pages.Account
             [Display(Name = "姓名")]
             public string RealName { get; set; }
 
-            [Required]
+            //[Required]
             [DataType(DataType.Text)]
             [Display(Name = "昵称")]
             public string Name { get; set; }
@@ -62,7 +62,7 @@ namespace IdentityScaffold.Mvc.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "出生日期")]
             [DataType(DataType.Date)]
-            public DateTime DOB { get; set; }
+            public DateTime BirthDate { get; set; }
             [Phone]
             [Display(Name = "手机号码")]
             public string PhoneNumber { get; set; }
@@ -91,7 +91,7 @@ namespace IdentityScaffold.Mvc.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email,RealName=Input.RealName,Name=Input.Name,DOB=Input.DOB };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, RealName = Input.RealName, Name = Input.Name, BirthDate = Input.BirthDate };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

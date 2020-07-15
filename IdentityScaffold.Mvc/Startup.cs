@@ -1,6 +1,6 @@
-using IdentityScaffold.Mvc.Areas.Identity.Data;
 using IdentityScaffold.Mvc.Data;
 using IdentityScaffold.Mvc.Hubs;
+using IdentityScaffold.Mvc.Models;
 using IdentityScaffold.Mvc.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,15 +35,15 @@ namespace IdentityScaffold.Mvc
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseMySQL(Configuration.GetConnectionString("MySqlConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders(); 
-            services.AddControllersWithViews()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
-                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
-                });
-            ;//mvc 框架
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            services.AddControllersWithViews();
+            //.AddRazorPagesOptions(options =>
+            //{
+            //    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+            //    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+            //});
+            //mvc 框架
             services.AddRazorPages();//身份认证的ui
             services.AddSignalR();//即时 通讯
 
@@ -56,6 +56,15 @@ namespace IdentityScaffold.Mvc
 
             // using Microsoft.AspNetCore.Identity.UI.Services;
             services.AddSingleton<IEmailSender, EmailSender>();
+
+
+            services.AddScoped<IAlbumService, AlbumEfService>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("仅限管理员", policy => policy.RequireRole("Administrators"));
+                options.AddPolicy("编辑专辑", policy => policy.RequireClaim("Edit Albums"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

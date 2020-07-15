@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace IdentityScaffold.Mvc.Areas.Identity.Data
+namespace IdentityScaffold.Mvc.Models
 {
     public class ApplicationRole : IdentityRole<int>
     {

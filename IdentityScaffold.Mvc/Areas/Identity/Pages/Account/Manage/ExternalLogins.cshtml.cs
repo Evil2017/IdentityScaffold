@@ -1,4 +1,4 @@
-﻿using IdentityScaffold.Mvc.Areas.Identity.Data;
+﻿using IdentityScaffold.Mvc.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

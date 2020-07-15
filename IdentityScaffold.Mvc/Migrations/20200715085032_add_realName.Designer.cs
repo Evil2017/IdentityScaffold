@@ -19,7 +19,7 @@ namespace IdentityScaffold.Mvc.Migrations
                 .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationRole", b =>
+            modelBuilder.Entity("IdentityScaffold.Mvc.Models.ApplicationRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace IdentityScaffold.Mvc.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationUser", b =>
+            modelBuilder.Entity("IdentityScaffold.Mvc.Models.ApplicationUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -219,7 +219,7 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationRole", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -228,7 +228,7 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationUser", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -237,7 +237,7 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationUser", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -246,13 +246,13 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationRole", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationUser", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -261,7 +261,7 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationUser", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

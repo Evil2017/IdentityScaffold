@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Identity\IdentityHostingStartup.cs" />
+    <Compile Remove="Migrations\20200715153708_addalbam.cs" />
+    <Compile Remove="Migrations\20200715153708_addalbam.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

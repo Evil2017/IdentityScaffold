@@ -19,7 +19,7 @@ namespace IdentityScaffold.Mvc.Migrations
                 .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("IdentityScaffold.Mvc.Areas.Identity.Data.IdentityScaffoldUser", b =>
+            modelBuilder.Entity("IdentityScaffold.Mvc.Models.IdentityScaffoldUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -225,7 +225,7 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.IdentityScaffoldUser", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.IdentityScaffoldUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -234,7 +234,7 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.IdentityScaffoldUser", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.IdentityScaffoldUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -249,7 +249,7 @@ namespace IdentityScaffold.Mvc.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.IdentityScaffoldUser", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.IdentityScaffoldUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -258,7 +258,7 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.IdentityScaffoldUser", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.IdentityScaffoldUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

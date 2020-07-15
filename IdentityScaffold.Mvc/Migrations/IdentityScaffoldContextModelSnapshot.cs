@@ -17,7 +17,39 @@ namespace IdentityScaffold.Mvc.Migrations
                 .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationRole", b =>
+            modelBuilder.Entity("IdentityScaffold.Mvc.Models.Album", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Artist")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("CoverUrl")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(6,2)");
+
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Albums");
+                });
+
+            modelBuilder.Entity("IdentityScaffold.Mvc.Models.ApplicationRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,7 +76,7 @@ namespace IdentityScaffold.Mvc.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationUser", b =>
+            modelBuilder.Entity("IdentityScaffold.Mvc.Models.ApplicationUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,6 +84,9 @@ namespace IdentityScaffold.Mvc.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -64,11 +99,18 @@ namespace IdentityScaffold.Mvc.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("IdCardNo")
+                        .HasColumnType("varchar(18)")
+                        .HasMaxLength(18);
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("timestamp");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("varchar(256)")
@@ -217,7 +259,7 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationRole", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -226,8 +268,8 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationUser", null)
-                        .WithMany()
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationUser", null)
+                        .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -235,8 +277,8 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationUser", null)
-                        .WithMany()
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationUser", null)
+                        .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -244,14 +286,14 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationRole", null)
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationUser", null)
-                        .WithMany()
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationUser", null)
+                        .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -259,8 +301,8 @@ namespace IdentityScaffold.Mvc.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("IdentityScaffold.Mvc.Areas.Identity.Data.ApplicationUser", null)
-                        .WithMany()
+                    b.HasOne("IdentityScaffold.Mvc.Models.ApplicationUser", null)
+                        .WithMany("Tokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
