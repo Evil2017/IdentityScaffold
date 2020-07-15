@@ -1,5 +1,3 @@
-using System;
-
 namespace IdentityScaffold.Mvc.Models
 {
     public class ErrorViewModel

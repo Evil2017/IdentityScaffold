@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using IdentityScaffold.Mvc.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using IdentityScaffold.Mvc.Models;
+using System.Diagnostics;
 
 namespace IdentityScaffold.Mvc.Controllers
 {
@@ -22,12 +19,16 @@ namespace IdentityScaffold.Mvc.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
         }
-
+        [Authorize]
+        public IActionResult Signalr()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
