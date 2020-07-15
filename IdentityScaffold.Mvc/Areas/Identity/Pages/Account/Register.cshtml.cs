@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -52,6 +53,20 @@ namespace IdentityScaffold.Mvc.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "姓名")]
             public string RealName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "昵称")]
+            public string Name { get; set; }
+
+            [Required]
+            [Display(Name = "出生日期")]
+            [DataType(DataType.Date)]
+            public DateTime DOB { get; set; }
+            [Phone]
+            [Display(Name = "手机号码")]
+            public string PhoneNumber { get; set; }
+
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -76,7 +91,7 @@ namespace IdentityScaffold.Mvc.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email,RealName=Input.RealName };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email,RealName=Input.RealName,Name=Input.Name,DOB=Input.DOB };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
